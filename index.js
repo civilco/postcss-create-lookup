@@ -23,7 +23,7 @@ module.exports = postcss.plugin('postcss-create-lookup', (opts) => {
 
     if (output.length && _.isString(opts.file)) {
       mkdirp.sync(path.dirname(opts.file));
-      let json = [];
+      var json = [];
 
       try {
         json = JSON.parse(fs.readFileSync(opts.file) || '[]');
