@@ -1,0 +1,13 @@
+npm-debug.log
+.env
+
+.DS_STORE
+*.log
+
+node_modules
+
+dist
+civil_ssr_source
+coverage
+.awspublish*
+deploy/*

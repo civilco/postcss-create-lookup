@@ -1,0 +1,27 @@
+{
+  "name": "postcss-create-lookup",
+  "version": "1.0.0",
+  "description": "make lookup",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "postcss": "^5.2.0"
+  },
+  "dependencies": {
+    "lodash": "^4.16.1",
+    "mkdirp": "^0.5.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/civilco/postcss-create-lookup.git"
+  },
+  "bugs": {
+    "url": "https://github.com/civilco/postcss-create-lookup/issues"
+  },
+  "homepage": "https://github.com/civilco/postcss-create-lookup#readme"
+}
