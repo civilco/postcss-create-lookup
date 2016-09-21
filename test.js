@@ -12,11 +12,11 @@ test('find any properties with a $', t => {
   `;
 
   return postcss([ plugin({
-    file: './output.json',
+    file: './test1.json',
   }) ])
   .process(input)
   .then( result => {
-    let json = JSON.parse(fs.readFileSync('./output.json'));
+    let json = JSON.parse(fs.readFileSync('./test1.json'));
 
     t.deepEqual(json, [
       {
@@ -31,7 +31,32 @@ test('find any properties with a $', t => {
       }
     ]);
     t.deepEqual(result.warnings().length, 0);
+  })
+  .then(()=>new Promise((resolve, reject)=>fs.unlink('./test1.json', resolve)))
+});
 
-    fs.unlinkSync('./output.json');
-  });
+
+test('merge with an existing file', t => {
+  let input = `.bob { background-color: $xyz; padding: 10px; }`;
+
+  fs.writeFileSync('./test2.json', JSON.stringify([{ old: true }]));
+
+  return postcss([ plugin({
+    file: './test2.json',
+  }) ])
+  .process(input)
+  .then( result => {
+    let json = JSON.parse(fs.readFileSync('./test2.json'));
+
+    t.deepEqual(json, [
+      { old: true },
+      {
+        selector: ".bob",
+        value: "$xyz",
+        prop: "background-color"
+      }
+    ]);
+    t.deepEqual(result.warnings().length, 0);
+  })
+  .then(()=>new Promise((resolve, reject)=>fs.unlink('./test2.json', resolve)))
 });
